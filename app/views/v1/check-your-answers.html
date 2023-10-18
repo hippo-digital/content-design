@@ -1,5 +1,9 @@
 {% extends 'layout.html' %}
 
+{% if data['date-of-birth'][1] %}
+{% set month = data['date-of-birth'][1] | returnDate %}
+{% endif %}
+
 {% set mainClasses = "nhsuk-main-wrapper--s" %}
 
 {% block pageTitle %}
@@ -25,12 +29,12 @@
               text: "NHS number"
             },
             value: {
-              text: "485 777 3456"
+              text: data['nhs-number']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "do-you-know-nhs",
                   text: "Change",
                   visuallyHiddenText: "NHS number"
                 }
@@ -42,12 +46,12 @@
               text: "Name"
             },
             value: {
-              text: "Kevin Francis"
+              text: data['first-name'] + " " + data['last-name']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "what-is-your-name",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -59,12 +63,12 @@
               text: "Date of birth"
             },
             value: {
-              html: "15 March 1984"
+              html: data['date-of-birth'][0] + " " + month + " " + data['date-of-birth'][2]
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "what-is-your-dob",
                   text: "Change",
                   visuallyHiddenText: "date of birth"
                 }
@@ -73,17 +77,17 @@
           },
           {
             key: {
-              text: "Home address"
+              text: "Post Code"
             },
             value: {
-              html: '8 Bridgewater Place<br>Leeds<br>LS11 5BZ'
+              text: data['postcode']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "what-is-your-postcode",
                   text: "Change",
-                  visuallyHiddenText: "home address"
+                  visuallyHiddenText: "postcode"
                 }
               ]
             }
@@ -92,50 +96,7 @@
       }) }}
 
       <h2>
-        Medical details
-      </h2>
-
-      {{ summaryList({
-        rows: [
-          {
-            key: {
-              text: "Allergies"
-            },
-            value: {
-              text: "No allergies"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "allergies"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Conditions"
-            },
-            value: {
-              html: "Asthma <br> Disabilities, including physical and learning disabilities"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "conditions"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-      <h2>
-        Now send you application
+        Now send your application
       </h2>
 
       <p>
@@ -146,7 +107,7 @@
         Your details with be sent to Rose Medical Practice to begin your registration.
       </p>
 
-      <a href="/templates/confirmation-page" class="nhsuk-button">
+      <a href="confirmation-page" class="nhsuk-button">
         Accept and send registration
       </a>
 
