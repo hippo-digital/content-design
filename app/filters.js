@@ -1,3 +1,4 @@
+const moment = require('moment');
 module.exports = function (env) { /* eslint-disable-line no-unused-vars */
   /**
    * Instantiate object used to store the methods registered as a
@@ -37,6 +38,12 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
     documentation.
 
   ------------------------------------------------------------------ */
+
+  filters.returnDate = (input) => {
+    var dateFormat = "MMMM"
+    var d = moment().month(input-1).format(dateFormat)
+    return d;
+  }
 
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
