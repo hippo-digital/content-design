@@ -1,0 +1,42 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Register for this service
+      </h1>
+
+      <p>
+        To register you'll need to have:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>details of where you live</li>
+        <li>your tenancy agreement, if you have one</li>
+        <li>your landlord's details</li>
+      </ul>
+
+      {{ govukButton({
+        text: "Start registration",
+        href: "/registration-1",
+        isStartButton: false
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Check the status of previous reports
+      </h1>
+
+      <p>
+        Filter by status:
+      </p>
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+      {{ govukRadios({
+        name: "select-option",
+        fieldset: {
+        },
+        items: [
+          {
+            value: "pending",
+            text: "Not yet started"
+          },
+          {
+            value: "open",
+            text: "Being investigated"
+          },
+          {
+            value: "closed",
+            text: "Closed"
+          }
+        ]
+      }) }}
+      
+        {{ govukButton({
+          href: "#",
+          text: "View results"
+        }) }}
+
+      {%- from "moj/components/ticket-panel/macro.njk" import mojTicketPanel -%}
+
+      {{ mojTicketPanel({
+        attributes: {
+          'aria-label': 'Sub navigation 1',
+          'id': 'report1'
+        },
+        items: [{
+          html: '<h2 class="govuk-heading-m govuk-!-margin-bottom-2">Submitted: 19 January 2024</h2>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Status:</h2><p><strong class="govuk-tag">Being investigated</strong></p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Issue</h3>
+          <p>My apartment is really damp, especially the kitchen and bathroom, and there is loads of black mould on the walls</p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">When did issue start</h3>
+          <p>2 November 2023</p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">What has the landlord done</h3>
+          <p>My landlord has refused to do anything and just says Issueit&#39;s not his problem</p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Impact</h3>
+          <p>	I&#39;ve got a bad cough that won&#39;t go away and have had problems with my breathing. My doctor says I should wear a mask at home</p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Evidence</h3>
+          <p><img src="/public/images/black_mould.png" width="100%"></p>
+          ',
+          attributes: {
+            'aria-label': 'Section 1'
+          },
+          classes: 'moj-ticket-panel__content--blue'
+        }]
+      }) }}
+
+      {{ mojTicketPanel({
+        attributes: {
+          'aria-label': 'Sub navigation 1',
+          'id': 'report2'
+        },
+        items: [{
+          html: '<h2 class="govuk-heading-m govuk-!-margin-bottom-2">Submitted: 8 September 2023</h2>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Status:</h2><p><strong class="govuk-tag">Closed</strong></p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Update from government</h3>
+          <p>We contacted the landlord on 15 September and he explained there&#39;s some building work going on next door to the apartment that should be finished in the next few days. So no further action is required.</p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Issue</h3>
+          <p>My apartment is really noisy and I can&#39;t sleep</p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">When did problem start</h3>
+          <p>27 August 2023</p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">What has the landlord done</h3>
+          <p>He&#39;s on holiday and I can&#39;t contact him</p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Impact</h3>
+          <p>I&#39;ve not been able to work</p>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Evidence</h3>
+          <p>None</p>
+          ',
+          attributes: {
+            'aria-label': 'Section 1'
+          },
+          classes: 'moj-ticket-panel__content--blue'
+        }]
+      }) }}
+
+    </div>
+
+
+    <div class="govuk-grid-column-one-third">
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Jump to a report
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="#report1">
+                19 January 2024
+              </a>
+            </li>
+            <li>
+              <a href="#report2">
+                8 September 2023
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,28 +1,26 @@
-// External dependencies
-const express = require('express');
-const moment = require('moment')
+//
+// For guidance on how to create routes see:
+// https://prototype-kit.service.gov.uk/docs/create-routes
+//
 
-const router = express.Router();
+const govukPrototypeKit = require('govuk-prototype-kit')
+const router = govukPrototypeKit.requests.setupRouter()
 
-// Add your routes here - above the module.exports line
+// Add your routes here
 
-router.post('/v1/question-page-post', function (req, res) {
-  var uk = req.session.data['uk']
-  if (uk === 'no'){
-    res.redirect('/v1/not-eligible')
-  }else {
-    res.redirect('/v1/do-you-know-nhs')
-  }
-})
+// Run this code when a form is submitted to 'options-answer'
+router.post('/options-answer', function (req, res) {
 
-router.post('/v1/do-you-know-nhs', function (req, res) {
-  var NHSnumber = req.session.data['knowNHSNumber']
-  if (NHSnumber === 'yes'){
-    res.redirect('/v1/what-is-your-dob')
-  }else {
-    res.redirect('/v1/what-is-your-name')
-  }
-})
-
-
-module.exports = router;
+    var option = req.session.data['select-option']
+  
+    if (option == "register"){
+      res.redirect('/register')
+    } else {
+      if (option == "report"){
+        res.redirect('/report')
+      } else {
+        res.redirect('/previous')
+      }
+    }
+  
+  })
